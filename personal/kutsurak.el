@@ -9,5 +9,8 @@
 
 (require 'java-unicode-conversions)
 
+;; org mode customization
+(add-hook 'org-mode-hook 'auto-fill-mode)
+
 (provide 'kutsurak)
 ;;; kutsurak.el ends here
