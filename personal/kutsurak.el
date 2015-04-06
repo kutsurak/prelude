@@ -7,6 +7,18 @@
 (global-set-key (kbd "C-c <backspace>") 'c-hungry-delete-backwards)
 (global-set-key (kbd "C-c k") 'kill-region)
 
+(prelude-require-package 'ido-vertical-mode)
+
+(require 'ido-vertical-mode)
+(ido-vertical-mode 1)
+
+;;; Prevent autosearch in ido-mode unless specifically requested to!
+(setq ido-auto-merge-work-directories-length -1)
+(define-key ido-file-dir-completion-map (kbd "C-c C-s")
+  (lambda()
+    (interactive)
+    (ido-initiate-auto-merge (current-buffer))))
+
 (require 'java-unicode-conversions)
 (add-hook 'conf-javaprop-mode-hook 'kutsurak/ju-keybind)
 
