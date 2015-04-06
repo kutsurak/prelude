@@ -7,7 +7,9 @@
 (global-set-key (kbd "C-c <backspace>") 'c-hungry-delete-backwards)
 (global-set-key (kbd "C-c k") 'kill-region)
 
-(prelude-require-package 'ido-vertical-mode)
+(prelude-require-packages '(ido-vertical-mode
+                            jedi
+                            python-environment))
 
 (require 'ido-vertical-mode)
 (ido-vertical-mode 1)
@@ -28,6 +30,9 @@
 
 ;; org mode customization
 (add-hook 'org-mode-hook 'auto-fill-mode)
+
+;; python settings
+(require 'python-settings)
 
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 
