@@ -12,5 +12,22 @@
 ;; org mode customization
 (add-hook 'org-mode-hook 'auto-fill-mode)
 
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+
+(let ((my-cabal-path (expand-file-name "~/.cabal/bin")))
+  (setenv "PATH" (concat my-cabal-path ":" (getenv "PATH")))
+  (add-to-list 'exec-path my-cabal-path))
+(custom-set-variables '(haskell-tags-on-save t))
+
+(custom-set-variables '(haskell-process-type 'cabal-repl))
+
+(custom-set-variables '(haskell-tags-on-save t))
+
+(custom-set-variables
+ '(haskell-process-suggest-remove-import-lines t))
+
+(custom-set-variables
+ '(haskell-process-suggest-hoogle-imports t))
+
 (provide 'kutsurak)
 ;;; kutsurak.el ends here
