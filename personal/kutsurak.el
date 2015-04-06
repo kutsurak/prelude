@@ -8,6 +8,8 @@
 (global-set-key (kbd "C-c k") 'kill-region)
 
 (require 'java-unicode-conversions)
+(add-hook 'conf-javaprop-mode-hook 'kutsurak/ju-keybind)
+
 
 ;; org mode customization
 (add-hook 'org-mode-hook 'auto-fill-mode)

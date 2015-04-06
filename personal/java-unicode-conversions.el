@@ -3,21 +3,21 @@
 ;;; Commentary:
 
 ;;; Code:
-(defun ju-encode-char (ch)
+(defun kutsurak/ju-encode-char (ch)
   "Encode a single character.
 CH the character to be encoded."
   (if (< ch #xff) ;Is ch a unibyte char
       ch ; if yes return it unchanged, otherwise encode it
     (format "\\u%04X" ch)))
 
-(defun ju-decode-char (ch)
+(defun kutsurak/ju-decode-char (ch)
   "Decode a single character.
 CH the character to be encoded."
   (if (integerp ch) ;Is ch a single character?
       ch ; if yes return it, otherwise parse it into an integer
     (string-to-number ch 16)))
 
-(defun ju-decode-region (start end)
+(defun kutsurak/ju-decode-region (start end)
   "Decode a marked region.
 START the initial position of the region.
 END the final position of the region"
@@ -36,12 +36,12 @@ END the final position of the region"
                                 (+ (point) 2)
                                 (+ (point) 6))))
                  (delete-forward-char 6)
-                 (insert (ju-decode-char big-char)))
+                 (insert (kutsurak/ju-decode-char big-char)))
              (forward-char)))
          (setq more-chars (not (eobp))))
        (delete-and-extract-region (point-min) (point-max))))))
 
-(defun ju-encode-region (start end)
+(defun kutsurak/ju-encode-region (start end)
   "Encode a marked region.
 START the initial position of the region.
 END the final position of the region"
@@ -56,9 +56,13 @@ END the final position of the region"
        (while more-chars
          (let ((cchar (char-after)))
            (delete-forward-char 1)
-           (insert (ju-encode-char cchar)))
+           (insert (kutsurak/ju-encode-char cchar)))
          (setq more-chars (not (eobp))))
        (delete-and-extract-region (point-min) (point-max))))))
+
+(defun kutsurak/ju-keybind ()
+  (local-set-key (kbd "C-c C-e") 'kutsurak/ju-encode-region)
+  (local-set-key (kbd "C-c C-d") 'kutsurak/ju-decode-region))
 
 (provide 'java-unicode-conversions)
 ;;; java-unicode-conversions.el ends here
