@@ -22,6 +22,9 @@
 (require 'java-unicode-conversions)
 (add-hook 'conf-javaprop-mode-hook 'kutsurak/ju-keybind)
 
+;; Show me the REPL!
+(slime-setup '(slime-fancy))
+(global-set-key (kbd "<f9>") 'slime-selector)
 
 ;; org mode customization
 (add-hook 'org-mode-hook 'auto-fill-mode)
